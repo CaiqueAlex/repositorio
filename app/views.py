@@ -5,3 +5,7 @@ def index(request):
 
 def login(request):
     return render(request, 'loginPage.html')
+
+
+def game(request):
+    return render(request, 'game.html')

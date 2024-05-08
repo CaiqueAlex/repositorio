@@ -1,7 +1,8 @@
 body {
 
-  background-image: linear-gradient(45deg, rgb(29, 29, 223), hsl(207, 100%, 50%));
+  background-image: linear-gradient(45deg, rgb(143, 101, 221), hsl(207, 100%, 50%));
 }
+
 .guess-section{
   background-color: rgba(0, 0, 0, 0.9);
   position: absolute;

@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
+:root {
+  --roxo: rgb(150, 94, 255);
+  --azul: hsl(207, 100%, 50%);
+  --rosa: rgb(221, 101, 211);
+  --azulescuro: hsl(246, 35%, 36%);
+  --azulescuro2: hsl(247, 35%, 24%);
+  --azulciano: hsl(197, 48%, 56%);
+}
+
+body {
+  font-family: 'arial', sans-serif;
+  text-align: center;
+  background-color: var(--azulescuro);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+hr {
+  width: 600px;
+}
+
+input{
+  text-align: center;
+  margin-bottom: 5px;
+  margin: 0 auto;
+  width: 20px;
+}
+
+.container {
+
+  max-width: 600px;
+  margin: 100px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+}
+
+h1 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  body {
+      font-family: 'Fredoka', sans-serif;
+      text-align: center;
+      background-color: #6e5c62;
+      color: white;
+      position: fixed;
+      width: 100vw;
+      height: 100vw;
+      max-width: 100%;
+  }
+}
+
+.botaoindex {
+    background-color: var(--azulescuro2);
+    border: none;
+    font-family: 'Fredoka', sans-serif;
+    color: white;
+    padding: 15px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.botaoindex:hover {
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    opacity: 70%;
+}

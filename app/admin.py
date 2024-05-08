@@ -11,11 +11,14 @@ class wordAdmin(admin.ModelAdmin):
 
     list_display = ('nome', 'nivel', 'tamanho',)
 
+    search_fields = ['nome']
+
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
 
-    list_display = ('senha', 'usuario')
 
     fieldsets = [
-        ("Informações do Usuario",           {'fields': ('senha', 'usuario')})
+        ("Informações do Usuario",           {'fields': ('usuario', 'senha')})
     ]
+
+    list_display = ('usuario', 'senha')
