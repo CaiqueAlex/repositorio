@@ -1,25 +1,48 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
-<head>
-  <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title class="title">term.ooo</title>
-  
-  <link rel="stylesheet" href="{% static 'styles/stylesindex.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-</head>
-<body>
-  <div class="guess-section">
-    <h1> Bem Vindos ao Termo G3! </h1>
-    <hr>
-    <br>
-    <button class="botaoindex" onclick="location.href='game'">Jogar</button>
-  </div>
+    <title class="title">term.ooo</title>
 
-</body>
+    <link rel="stylesheet" href="{% static 'styles/stylesindex.css' %}">
+
+  </head>
+
+  <body>
+    <div class="guess-section">
+      <h1> Bem Vindos ao Termo G3! </h1>
+      <hr>
+      <br>
+      <button class="botaoindex" onclick="location.href='game'">Jogar</button>
+    </div>
+    
+    <table class="ranking">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Pontuação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Caique</td>
+          <td>33</td>
+        </tr>
+        <tr>
+          <td>Laura</td>
+          <td>33</td>
+        </tr>
+        <tr>
+          <td>Zeca</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
 </html>

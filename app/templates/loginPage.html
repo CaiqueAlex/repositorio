@@ -1,37 +1,28 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title class="title">Termo</title>
-  
-  <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
-  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'styles/styleslogin.css' %}">
 </head>
 <body>
-  
-  <div class="guess-section">
-    <h1> Termo </h1>
-    <input type="text" maxlength="1"><p>
-    <input type="text" maxlength="1"></p>
-    <input type="text" maxlength="1"><p>
-    <input type="text" maxlength="1"></p>
-    <input type="text" maxlength="1"><br>
+    <div class="page">
+        <form method="POST" class="formLogin">
+            <h1>Login</h1>
+            <hr>
+            <p>Digite os seus dados de acesso no campo abaixo.</p>
+            <label for="usuario">Usuário</label>
+            <input type="usuario" placeholder="Digite seu nome de Usuário" autofocus="true" />
+            <label for="password">Senha</label>
+            <input type="password" placeholder="Digite sua Senha" />
+            <a href="/">Esqueci minha Senha</a>
+            <input type="submit" value="Acessar" class="btn" />
+        </form>
+    </div>
     
-    <button>Enviar</button>
-  </div>
-
-  <!-- <div id="feedback-section">
-
-  </div>
-
-  <div id="keyboard-section">
-    </div> -->
-
 </body>
 </html>

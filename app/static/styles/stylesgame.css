@@ -1,22 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
 :root {
-    --roxo: rgb(143, 101, 221);
+    --roxo: rgb(150, 94, 255);
     --azul: hsl(207, 100%, 50%);
     --rosa: rgb(221, 101, 211);
-    --azulescuro: hsl(246, 55%, 15%);
+    --azulescuro: hsl(246, 35%, 36%);
+    --azulescuro2: hsl(247, 35%, 24%);
+    --azulciano: hsl(197, 48%, 56%);
   }
 
-body {
-    font-family: 'Fredoka', sans-serif;
+  body {
+    font-family: 'arial', sans-serif; text-align: center;
     text-align: center;
-    background-image: linear-gradient(90deg, var(--azulescuro), var(--roxo) , var(--azulescuro));
-    color: white;
+    background-color: var(--azulescuro);
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+  }
+
+
+  .botao {
+    background-color: var(--azulescuro2);
+    border: none;
+    font-family: 'Fredoka', sans-serif;
+    color: white;
+    padding: 15px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 40px 2px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.botao:hover {
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    opacity: 70%;
 }
 
 hr {
@@ -31,7 +53,15 @@ input{
     height: 50px;
     width: 50px;
     border-radius: 25px;
+    border: 7px solid var(--azulescuro2);
 
+}
+
+.form-control{
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 2px rgb(192, 191, 191);
 }
 
 #title {
@@ -159,3 +189,4 @@ footer {
         max-width: 100%;
     }
 }
+
