@@ -23,4 +23,6 @@ urlpatterns = [
     path('singup/', include("app.urls")),
     path('game/', include("app.urls")),
     path('admin/', admin.site.urls),
+    path('password_reset/', include("app.urls")),  # URL de "Esqueci minha Senha"
 ]
+

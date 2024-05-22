@@ -4,6 +4,11 @@ import datetime
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+class Word2(models.Model):
+    content = models.CharField(
+        max_length=5,
+    )
+
 class word(models.Model):
 
     FACIL = 'FACIL'

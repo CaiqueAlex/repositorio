@@ -29,7 +29,7 @@ body {
     background-color: var(--azulescuro);
 }
 
-.formLogin {
+.formRegister {
     display: flex;
     flex-direction: column;
     background-color: var(--azulescuro);
@@ -38,24 +38,24 @@ body {
     gap: 5px
 }
 
-.areaLogin img {
+.areaRegister img {
     width: 420px;
 }
 
-.formLogin h1 {
+.formRegister h1 {
     padding: 0;
     margin: 0;
     font-size: 2.5em;
 }
 
-.formLogin p {
+.formRegister p {
     display: inline-block;
     font-size: 1.2em;
     color: #ffffff;
     margin-bottom: 25px;
 }
 
-.formLogin input {
+.formRegister input {
     padding: 15px;
     font-size: 1.2em;
     border: 7px solid var(--azulescuro2);
@@ -67,15 +67,15 @@ body {
 }
 
 
-.formLogin input:focus {
+.formRegister input:focus {
     border: 7px solid var(--azulciano);
 }
 
-.formLogin label {
+.formRegister label {
     font-size: 1.2em;
 }
 
-.formLogin a {
+.formRegister a {
     display: inline-block;
     margin-bottom: 20px;
     font-size: 13px;
@@ -83,8 +83,8 @@ body {
     transition: all linear 160ms;
 }
 
-.formLogin a:hover {
-    color: var(--azulciano);
+.formRegister a:hover {
+    color: #f72585;
 }
 
 @media (max-width: 1900px) {
@@ -119,6 +119,11 @@ body {
     border-radius: 30px;
 }
 
+.btn:hover {
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    opacity: 70%;
+}  
+ 
 .botaohome {
     background-size: cover;
     position: absolute;
@@ -142,9 +147,3 @@ body {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     opacity: 70%;
 }
-
-.btn:hover {
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    opacity: 70%;
-}  
-
