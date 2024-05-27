@@ -92,10 +92,12 @@ WSGI_APPLICATION = 'Termo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'database_name',
-        'NIVEL': 'database_nivel',
-        'TAMANHO': 'database_size',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dbdjango',
+        'USER': 'postgres',
+        'PASSWORD': 'termo',
+        'HOST': '127.0.0.1', 
+        'PORT': '5432',
     }
 }
 
