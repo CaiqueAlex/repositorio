@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="title">term.ooo</title>
+    <link rel="stylesheet" href="{% static 'styles/stylesloggedIndex.css' %}">
+    <link rel="icon" href="{% static 'images/Mochi_Maior_2.png' %}">
+  </head>
+  <body>
+    <form id="logout-form" action="{% url 'logout' %}" method="POST">
+      {% csrf_token %}
+      <button type="submit" class="botaosair"> <img src="{% static 'images/sair.png' %}"></button>
+    </form>
+    <div class="guess-section">
+      <h1> Term.ooo </h1>
+      <br>
+      <h1> Clique abaixo para Jogar! </h1>
+      <hr>
+      <br>
+      <button class="botaoindex" onclick="location.href='../game/'">Jogar</button>
+      <br>
+    </div>
+    <table class="ranking">
+      <thead class="titulo">
+        <tr>
+          <th>Nome</th>
+          <th>Pontuação</th> 
+        </tr>
+      </thead>
+      <tbody class="itens">
+        <tr>
+          <td>Caiuu</td>
+          <td>36</td>
+        </tr>
+        <tr>
+          <td>Caique</td>
+          <td>33</td>
+        </tr>
+        <tr>
+          <td>Laura</td>
+          <td>33</td>
+        </tr>
+        <tr>
+          <td>Hugo</td>
+          <td>30</td>
+        </tr>
+        <tr>
+          <td>Zeca</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

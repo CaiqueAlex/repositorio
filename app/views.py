@@ -1,50 +1,85 @@
 from django.shortcuts import render, redirect
+from .forms import RegisterForm, LoginForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import JsonResponse
-from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView
-from django.contrib.auth.forms import PasswordResetForm, UserCreationForm
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, LogoutView
+from django.contrib.auth.forms import PasswordResetForm, UserCreationForm, AuthenticationForm
 from django.template.loader import get_template
+import hashlib
 
-
-def password_reset_request(request):
+def register(request):
     if request.method == 'POST':
-        form = PasswordResetForm(request.POST)
+        print("Formulário POST recebido")
+        form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            return render(request, 'password_reset_done.html')
+            print("Formulário é válido")
+            user = form.save()
+            login(request, user)
+            return redirect('termo')  # Certifique-se que esta URL está correta
+        else:
+            print("Formulário não é válido")
+            print(form.errors)
     else:
-        form = PasswordResetForm()
-    return render(request, 'password_reset_form.html', {'form': form})
+        form = RegisterForm()
+    return render(request, 'registerPage.html', {'form': form})
+
+
+def login_page(request):
+    if request.method == 'POST':
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            # password_hashed = hashlib.md5(password.encode()).hexdigest()
+            user = authenticate(request, username=username, password=password)
+            if user:
+                login(request, user)
+                return redirect('termo')  # Redirecionar para a página do jogo após login bem-sucedido
+        else:
+            return render(request, 'loginPage.html', {'form': form, 'error': 'Usuário ou senha incorretos.'})
+    else:
+        form = LoginForm()
+        error = None
+    return render(request, 'loginPage.html', {'form': form})
+
+# def password_reset_request(request):
+#     if request.method == 'POST':
+#         form = PasswordResetForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return render(request, 'password_reset_done.html')
+#     else:
+#         form = PasswordResetForm()
+#     return render(request, 'password_reset_form.html', {'form': form})
 
 def index(request):
     return render(request, 'index.html')
 
-def login(request):
-    return render(request, 'loginPage.html')
+def termo(request):
+    return render(request, 'loggedIndex.html')
 
-def register(request):
-    return render(request, 'registerPage.html')
-
+@login_required(login_url='http://127.0.0.1:8000')
 def game(request):
-    return render(request, 'game.html')
+    user_not_authenticated = not request.user.is_authenticated
+    return render(request, 'game.html', {'user_not_authenticated': user_not_authenticated})
 
+# class MyPasswordReset(PasswordResetView):
+#     '''
+#     Requer
+#     registration/password_reset_form.html
+#     registration/password_reset_email.html
+#     registration/password_reset_subject.txt 
+#     '''
+#     ...
 
-class MyPasswordReset(PasswordResetView):
-    '''
-    Requer
-    registration/password_reset_form.html
-    registration/password_reset_email.html
-    registration/password_reset_subject.txt 
-    '''
-    ...
-
-
-class MyPasswordResetDone(PasswordResetDoneView):
-    '''
-    Requer
-    registration/password_reset_done.html
-    '''
-    ...
+# class MyPasswordResetDone(PasswordResetDoneView):
+#     '''
+#     Requer
+#     registration/password_reset_done.html
+#     '''
+#     ...
 
 def salvar_dados(request):
     if request.method == 'POST':
@@ -59,16 +94,3 @@ def salvar_dados(request):
         return JsonResponse({'mensagem': 'Dados salvos com sucesso!'})
 
     return JsonResponse({'erro': 'Método não permitido'}, status=405)
-
-def register(request):
-  if request.method == 'POST':
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
-      user = form.save()
-      login(request, user)
-      # Redirecionar para página de sucesso (opcional)
-      # return redirect('pagina_sucesso')
-      return render(request, 'registration_success.html')  # Exemplo de página de sucesso
-  else:
-    form = UserCreationForm()
-  return render(request, 'registerPage.html', {'form': form})

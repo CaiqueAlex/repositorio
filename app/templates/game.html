@@ -18,8 +18,7 @@
     
     <body>
         <main>
-                <button class="botaouser" href=""><img src="{% static 'images/user.png' %}"></button>
-                <button class="botaohome" onclick="location.href='../'"><img src="{% static 'images/home.png' %}"></button>
+                <button class="botaouser" onclick="location.href='../termo/'"><img src="{% static 'images/voltar.png' %}"></button>
             <h1 id="title">TERM.OOO</h1>
             <hr>
             <br>
@@ -46,7 +45,12 @@
             <br>
             <h1 id="answer"></h1>
         </main>
-
+        <script>
+            var userNotAuthenticated = "{{ user_not_authenticated }}";
+            if (userNotAuthenticated === "true") {
+                alert("Faça login ou cadastre-se para jogar!");
+            }
+        </script>
     </body>
 
 </html>
