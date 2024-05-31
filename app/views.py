@@ -28,6 +28,14 @@ def register(request):
         form = RegisterForm()
     return render(request, 'registerPage.html', {'form': form})
 
+# class MyPasswordReset(PasswordResetView):
+#     '''
+#     Requer
+#     registration/password_reset_form.html
+#     registration/password_reset_email.html
+#     registration/password_reset_subject.txt 
+#     '''
+#     ...
 
 def login_page(request):
     if request.method == 'POST':
