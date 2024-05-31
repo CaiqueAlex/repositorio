@@ -11,15 +11,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title class="title">term.ooo</title>
-
+    <link rel="icon" href="{% static 'images/termologo.png' %}">
     <link rel="stylesheet" href="{% static 'styles/stylesindex.css' %}">
-    <link rel="icon"
-        href="{% static 'images/Mochi_Maior_2.png' %}">
+    <!--<link rel="icon"
+        href="{% static 'images/Mochi_Maior_2.png' %}"><!-->
 
   </head>
 
   <body>
-    <button class="botaouser"> <img src="{% static 'images/user.png' %}"></button>
+    <!--<button class="botaouser"> <img src="{% static 'images/user.png' %}"></button> !-->
     <div class="guess-section">
       <h1> Bem Vindos ao Termo G3! </h1>
       <hr>
@@ -28,36 +28,6 @@
       <br>
       <button class="botaocadastro" onclick="location.href='register'">Cadastre-se</button>
     </div>
-
-    <table class="ranking">
-      <thead class="titulo">
-        <tr>
-          <th>Nome</th>
-          <th>Pontuação</th> 
-        </tr>
-      </thead>
-      <tbody class="itens">
-        <tr>
-          <td>Caiuu</td>
-          <td>36</td>
-        </tr>
-        <tr>
-          <td>Caique</td>
-          <td>33</td>
-        </tr>
-        <tr>
-          <td>Laura</td>
-          <td>33</td>
-        </tr>
-        <tr>
-          <td>Hugo</td>
-          <td>30</td>
-        </tr>
-        <tr>
-          <td>Zeca</td>
-          <td>0</td>
-        </tr>
-      </tbody>
-    </table>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
   </body>
 </html>

@@ -7,8 +7,8 @@
     --azulescuro: hsl(246, 35%, 36%);
     --azulescuro2: hsl(247, 35%, 24%);
     --azulciano: hsl(216, 100%, 50%);
-  }
-
+  }  
+  
 body {
     font-family: 'arial', sans-serif; text-align: center;
     text-transform: uppercase;
@@ -16,6 +16,16 @@ body {
     margin: 0;
     padding: 0;
     color: #ffffff
+}
+@keyframes fadeInSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .page {
@@ -148,3 +158,42 @@ body {
     opacity: 70%;
 }  
 
+.btn_esqueciSenha {
+    background-color: var(--azulescuro2);
+    border: none;
+    font-family: 'Fredoka', sans-serif;
+    color: var(--azulescuro2);
+    padding: 15px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.3em;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.messages {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .message {
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+  }
+  
+  .message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+  }

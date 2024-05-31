@@ -1,5 +1,4 @@
 {% load static %}
-{% csrf_token %}
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -7,25 +6,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon"
-        href="{% static 'images/Mochi_Maior_2.png' %}">
+    <link rel="icon" href="{% static 'images/termologo.png' %}">
     <title>Cadastro</title>
     <link rel="stylesheet" href="{% static 'styles/stylesregister.css' %}">
 </head>
 <body>
-    <button class="botaohome" onclick="location.href='../'"><img src="{% static 'images/home.png' %}"></button>
+    <button class="botaohome" onclick="location.href='../../'"><img src="{% static 'images/voltar.png' %}"></button>
     <div class="page">
-        <form method="POST" class="formRegister">
-            
-            <h1>Cadastre-se</h1>
-            <hr>
-            <p>Digite os seus dados de acesso no campo abaixo.</p>
-            <label for="usuario">Usuário</label>
-            <input type="usuario" placeholder="Digite seu nome de Usuário" autofocus="true" />
-            <label for="password">Senha</label>
-            <input type="password" placeholder="Digite sua Senha" />
+        <form method="POST" action="{% url 'register' %}" class="formRegister">
             {% csrf_token %}
-            <input  type="submit" value="Cadastrar" class="btn" />
+            <h1>Cadastre-se</h1>
+            <br>
+            <div class="form-group">
+                <label for="id_username">Usuário</label>
+                <br>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                <label for="id_password1">Senha</label>
+                <br>
+                {{ form.password1 }}
+            </div>
+            <div class="form-group">
+                <label for="id_password2">Confirme sua Senha</label>
+                <br>
+                {{ form.password2 }}
+            </div>
+            <hr>
+            <input type="submit" value="Cadastrar" class="btn" />
         </form>
     </div>
 </body>

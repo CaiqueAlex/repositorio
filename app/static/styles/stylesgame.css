@@ -10,6 +10,13 @@
     --azul: hsl(216, 100%, 50%);
 }
 
+.class_letra.readonly input {
+    pointer-events: none; 
+    background-color: #f2f2f2; 
+    color: #666666;
+}
+
+
 body {
     font-family: 'arial', sans-serif;
     text-align: center;
@@ -21,6 +28,17 @@ body {
     align-items: center;
     height: 100vh;
 }
+
+.correta{
+    background-color: green !important;
+}
+.existe{
+    background-color: yellow !important;
+}
+.errado{
+    background-color: red !important;
+}
+
 
 
 .botao {
@@ -59,7 +77,7 @@ input {
     outline: none;
 }
 
-.form-control {
+.class_letra input {
     font-size: 30px;
     font-weight: bold;
     text-transform: uppercase;
@@ -147,6 +165,23 @@ input {
 
     /* Hover Animation */
     transition: transform 100ms linear;
+}
+
+.grey {
+    background-color: #f2f2f2; /* Cor de fundo cinza */
+    color: #666666; /* Cor do texto cinza */
+}
+
+.green {
+    color: green;
+}
+
+.yellow {
+    color: yellow;
+}
+
+.black {
+    color: black;
 }
 
 .enter-key-tile:hover {

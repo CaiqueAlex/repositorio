@@ -2,51 +2,49 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon"
-            href="{% static 'images/Mochi_Maior_2.png' %}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/termologo.png' %}">
+    <title>TermoG3</title>
+    <link rel="stylesheet" href="{% static 'styles/stylesgame.css' %}">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
 
-        <title>TermoG3</title>
+<body>
+    <main>
+        <button class="botaouser" onclick="location.href='../termo/'"><img
+                src="{% static 'images/voltar.png' %}"></button>
+        <h1 id="title">TERM.OOO</h1>
+        <hr>
+        <br>
 
-        <link rel="stylesheet" href="{% static 'styles/stylesgame.css' %}">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="{% static 'js/script.js' %}"></script>
-    </head>
-    
-    <body>
-        <main>
-                <button class="botaouser" href=""><img src="{% static 'images/user.png' %}"></button>
-                <button class="botaohome" onclick="location.href='../'"><img src="{% static 'images/home.png' %}"></button>
-            <h1 id="title">TERM.OOO</h1>
-            <hr>
-            <br>
-
-            <div id="board">
-            <form id="form1" action="script.js" method="POST">
+        <div id="board" data-palavra="{{ palavra_aleatoria.palavra }}">
+            <form id="form1" action="{% url 'salvar_dados' %}" method="POST">
+                {% csrf_token %}
+                <!-- Campos de entrada para as tentativas -->
+                {% for i in "123456" %}
                 <div class="class_letra">
-                    <input type="text" class="form-control" id="n0" data-next="1" maxlength="1" onkeydown="handleInput(event)">
-
-                    <input type="text" class="form-control" id="n1" data-next="2" maxlength="1" onkeydown="handleInput(event)">
-
-                    <input type="text" class="form-control" id="n2" data-next="3" maxlength="1" onkeydown="handleInput(event)">
-
-                    <input type="text" class="form-control" id="n3" data-next="4" maxlength="1" onkeydown="handleInput(event)">
-
-                    <input type="text" class="form-control" id="n4" data-next="5" maxlength="1" onkeydown="handleInput(event)">
+                    <input type="text" class="form-control" name="letra{{ forloop.counter }}" id="letra{{ forloop.counter }}" maxlength="1">
+                    <input type="text" class="form-control" name="letra{{ forloop.counter }}" id="letra{{ forloop.counter }}" maxlength="1">
+                    <input type="text" class="form-control" name="letra{{ forloop.counter }}" id="letra{{ forloop.counter }}" maxlength="1">
+                    <input type="text" class="form-control" name="letra{{ forloop.counter }}" id="letra{{ forloop.counter }}" maxlength="1">
+                    <input type="text" class="form-control" name="letra{{ forloop.counter }}" id="letra{{ forloop.counter }}" maxlength="1">
                 </div>
-
+                {% endfor %}
             </form>
-
-            </div>
-            <button class="botao">Enviar</button>
-
-            <br>
-            <h1 id="answer"></h1>
-        </main>
-
-    </body>
-
+        </div>
+        <br>
+        <h1 id="answer"></h1>
+    </main>
+    <script>
+        var userNotAuthenticated = "{{ user_not_authenticated }}";
+        if (userNotAuthenticated === "true") {
+            alert("Faça login ou cadastre-se para jogar!");
+        }
+    </script>
+</body>
 </html>
