@@ -11,6 +11,13 @@
   </head>
   <body>
     <form id="logout-form" action="{% url 'logout' %}" method="POST">
+      {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
       {% csrf_token %}
       <button type="submit" class="botaosair"> <img src="{% static 'images/sair.png' %}"></button>
     </form>
@@ -24,4 +31,10 @@
       <br>
     </div>
   </body>
+  <script>
+    var userNotAuthenticated = "{{ user_not_authenticated }}";
+    if (userNotAuthenticated === "true") {
+        alert("Faça login ou cadastre-se para jogar!");
+    }
+</script>
 </html>

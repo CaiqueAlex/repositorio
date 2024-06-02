@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+import os
+from django.conf import settings
 from django.contrib import messages
 from .forms import RegisterForm, LoginForm, ResetPasswordForm
 from django.contrib.auth import authenticate, login
@@ -20,6 +22,7 @@ def register(request):
             print("Formulário é válido")
             user = form.save()
             login(request, user)
+            messages.success(request, 'Conta criada com Sucesso!')
             return redirect('termo')  # Certifique-se que esta URL está correta
         else:
             print("Formulário não é válido")
@@ -27,15 +30,6 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request, 'registerPage.html', {'form': form})
-
-# class MyPasswordReset(PasswordResetView):
-#     '''
-#     Requer
-#     registration/password_reset_form.html
-#     registration/password_reset_email.html
-#     registration/password_reset_subject.txt 
-#     '''
-#     ...
 
 def login_page(request):
     if request.method == 'POST':
@@ -46,6 +40,7 @@ def login_page(request):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
+                messages.success(request, 'Logado com Sucesso!')
                 return redirect('termo')
         else:
             return render(request, 'loginPage.html', {'form': form, 'error': 'Usuário ou senha incorretos.'})
@@ -54,17 +49,40 @@ def login_page(request):
         error = None
     return render(request, 'loginPage.html', {'form': form})
 
+import os
+
+import os
+
 def salvar_dados(request):
     if request.method == 'POST':
-        letra1 = request.POST.get('letra1')
-        letra2 = request.POST.get('letra2')
-        letra3 = request.POST.get('letra3')
-        letra4 = request.POST.get('letra4')
-        letra5 = request.POST.get('letra5')
+        letra1 = request.POST.get('letra1', '').strip().lower()
+        letra2 = request.POST.get('letra2', '').strip().lower()
+        letra3 = request.POST.get('letra3', '').strip().lower()
+        letra4 = request.POST.get('letra4', '').strip().lower()
+        letra5 = request.POST.get('letra5', '').strip().lower()
+
+        palavra = letra1 + letra2 + letra3 + letra4 + letra5
+
+        if len(palavra) != 5:
+            return JsonResponse({'erro': 'Digite 5 letras!'}, status=400)
+
+        arquivo_palavras = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'js', 'arquivo_palavras.txt')
+
+        if not os.path.exists(arquivo_palavras):
+            return JsonResponse({'erro': 'Arquivo de palavras não encontrado!'})
+
+        with open(arquivo_palavras, 'r') as file:
+            palavras_validas = [linha.strip().lower() for linha in file]
+
+        if palavra not in palavras_validas:
+            return JsonResponse({'erro': 'Palavra inválida!'}, status=400)
 
         return JsonResponse({'mensagem': 'Dados salvos com sucesso!'})
+    else:
+        return JsonResponse({'erro': 'Método não permitido'}, status=405)
 
-    return JsonResponse({'erro': 'Método não permitido'}, status=405)
+
+
 
 def password_page(request):
     if request.method == 'POST':
@@ -86,8 +104,10 @@ def password_page(request):
 def index(request):
     return render(request, 'index.html')
 
+@login_required(login_url='http://127.0.0.1:8000')
 def termo(request):
-    return render(request, 'loggedIndex.html')
+    user_not_authenticated = not request.user.is_authenticated
+    return render(request, 'loggedIndex.html', {'user_not_authenticated': user_not_authenticated})
 
 @login_required(login_url='http://127.0.0.1:8000')
 def game(request):

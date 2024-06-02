@@ -1,9 +1,7 @@
 from dataclasses import dataclass
-from django.shortcuts import render, redirect
 from enum import Enum, auto
-from django.db import models
 from typing import Sequence, Tuple
-from unidecode import unidecode
+import unicodedata
 
 
 class Feedback(Enum):
@@ -37,11 +35,14 @@ class Termo:
     normalized_valid_words: set = None
 
     def __post_init__(self):
-        self.normalized_word = unidecode(self.word).lower()
+        self.normalized_word = self._remove_diacritics(self.word).lower()
         self.normalized_valid_words = set(map(
-            lambda it: unidecode(it).lower(),
+            lambda it: self._remove_diacritics(it).lower(),
             self.valid_words,
         ))
+
+    def _remove_diacritics(self, text):
+        return ''.join(c for c in unicodedata.normalize('NFKD', text) if not unicodedata.combining(c))
 
     def _feedback(self, guess: str):
         if len(guess) != len(self.word):
@@ -73,15 +74,10 @@ class Termo:
         return feedback
 
     def test(self, guess: str) -> Result:
-        guess = unidecode(guess).lower()
+        guess = self._remove_diacritics(guess).lower()
         if guess not in self.normalized_valid_words:
             raise InvalidAttempt()
         return Result(
             win=self.normalized_word == guess,
             feedback=self.feedback(guess),
         )
-
- def verificarLetra(request):
-    if request.method == 'POST':
-        letra = request.POST.get('letra1')
-        if letra == 'A':
