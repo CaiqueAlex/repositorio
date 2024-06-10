@@ -8,9 +8,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from .models import Palavra
-from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, LogoutView
-from django.contrib.auth.forms import PasswordResetForm, UserCreationForm, AuthenticationForm
-from django.template.loader import get_template
 import hashlib
 import random
 
