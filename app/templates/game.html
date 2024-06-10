@@ -6,64 +6,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon"
-        href="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/731868f5-0d72-423a-be7f-d09ed0e06c5a/d3e4c7k-990819d8-e02f-4ca5-8adf-d57437bd1380.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzczMTg2OGY1LTBkNzItNDIzYS1iZTdmLWQwOWVkMGUwNmM1YVwvZDNlNGM3ay05OTA4MTlkOC1lMDJmLTRjYTUtOGFkZi1kNTc0MzdiZDEzODAucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.qT5XFti_BvVgJV4Hvu8Mt7_O-vB2YcE6wqLkVwQd1Vs">
-
+    <link rel="icon" href="{% static 'images/termologo.png' %}">
     <title>TermoG3</title>
-
     <link rel="stylesheet" href="{% static 'styles/stylesgame.css' %}">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </head>
 
 <body>
-
     <main>
+        <button class="botaouser" onclick="location.href='../termo/'"><img
+                src="{% static 'images/voltar.png' %}"></button>
         <h1 id="title">TERM.OOO</h1>
         <hr>
         <br>
-
-        <div id="board">
-
-            <form id="form1" action="#" method="POST">
-                <div class="class_letra">
-                    <input type="text" class="form-control" id="n0" data-next="1" maxlength="1" onkeydown="handleInput(event)">
-
-                    <input type="text" class="form-control" id="n1" data-next="2" maxlength="1" onkeydown="handleInput(event)">
-
-                    <input type="text" class="form-control" id="n2" data-next="3" maxlength="1" onkeydown="handleInput(event)">
-
-                    <input type="text" class="form-control" id="n3" data-next="4" maxlength="1" onkeydown="handleInput(event)">
-
-                    <input type="text" class="form-control" id="n4" data-next="5" maxlength="1" onkeydown="handleInput(event)">
-                </div>
-
-            </form>
-
+        
+        <!-- Pop-up de Sucesso -->
+        <div id="success-popup" class="popup success">
+            <span class="close">&times;</span>
+            <p>Você ganhou!</p>
+            <div id="confetti-container"></div>
         </div>
-        <button class="botao" onclick="location.href='game'">Enviar</button>
 
+            <!-- Pop-up de Erro -->
+        <div id="error-popup" class="popup error">
+            <span class="close">&times;</span>
+            <p>Você perdeu!</p>
+        </div>
+
+        <div id="board" data-palavra="{{ palavra_aleatoria.palavra }}">
+        <div id="arquivo-palavras" data-url="{% static 'js/arquivo_palavras.txt' %}"></div>
+
+            <form id="form1" action="{% url 'salvar_dados' %}" method="POST">
+                {% csrf_token %}
+                {% for i in "123456" %}
+                <div class="class_letra">
+                    <input type="text" class="form-control" name="letra{{ forloop.counter }}" id="letra{{ forloop.counter }}" maxlength="1" autocomplete="off">
+                    <input type="text" class="form-control" name="letra{{ forloop.counter }}" id="letra{{ forloop.counter }}" maxlength="1" autocomplete="off">
+                    <input type="text" class="form-control" name="letra{{ forloop.counter }}" id="letra{{ forloop.counter }}" maxlength="1" autocomplete="off">
+                    <input type="text" class="form-control" name="letra{{ forloop.counter }}" id="letra{{ forloop.counter }}" maxlength="1" autocomplete="off">
+                    <input type="text" class="form-control" name="letra{{ forloop.counter }}" id="letra{{ forloop.counter }}" maxlength="1" autocomplete="off">
+                </div>
+                {% endfor %}
+            </form>
+            
+        </div>
         <br>
         <h1 id="answer"></h1>
     </main>
     <script>
-
-        function handleInput(event) {
-            const input = event.target;
-            const key = event.key;
-
-            // aralho
-            if (key === "Backspace") {
-                return; 
-            }
-
-            if (input.value.length === 1 && key !== "Backspace") {
-                const nextId = parseInt(input.id.slice(1)) + 1;
-                const nextInput = document.getElementById("n" + nextId);
-                if (nextInput) {
-                    nextInput.focus();
-                }
-            }
+        var userNotAuthenticated = "{{ user_not_authenticated }}";
+        if (userNotAuthenticated === "true") {
+            alert("Faça login ou cadastre-se para jogar!");
         }
     </script>
 </body>
-
 </html>

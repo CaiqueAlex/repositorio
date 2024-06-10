@@ -2,47 +2,29 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
+  
   <head>
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title class="title">term.ooo</title>
-
+    <link rel="icon" href="{% static 'images/termologo.png' %}">
     <link rel="stylesheet" href="{% static 'styles/stylesindex.css' %}">
+
 
   </head>
 
   <body>
+
     <div class="guess-section">
-      <h1> Bem Vindos ao Termo G3! </h1>
+      <div class='animation'><h1></h1>Bem Vindos ao Termo G3!</h1></div>
       <hr>
       <br>
-      <button class="botaoindex" onclick="location.href='game'">Jogar</button>
+      <button class="botaoindex" onclick="location.href='login'">Login</button>
+      <br>
+      <button class="botaocadastro" onclick="location.href='register'">Cadastre-se</button>
     </div>
-    
-    <table class="ranking">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Pontuação</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Caique</td>
-          <td>33</td>
-        </tr>
-        <tr>
-          <td>Laura</td>
-          <td>33</td>
-        </tr>
-        <tr>
-          <td>Zeca</td>
-          <td>0</td>
-        </tr>
-      </tbody>
-    </table>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
   </body>
 </html>

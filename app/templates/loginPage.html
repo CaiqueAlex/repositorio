@@ -6,23 +6,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/termologo.png' %}">
     <title>Login</title>
     <link rel="stylesheet" href="{% static 'styles/styleslogin.css' %}">
 </head>
 <body>
+    <button class="botaohome" onclick="location.href='../../'"><img src="{% static 'images/voltar.png' %}"></button>
     <div class="page">
-        <form method="POST" class="formLogin">
+        <form method="POST" action="{% url 'login' %}" class="formLogin">
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+            {% csrf_token %}
             <h1>Login</h1>
             <hr>
             <p>Digite os seus dados de acesso no campo abaixo.</p>
-            <label for="usuario">Usuário</label>
-            <input type="usuario" placeholder="Digite seu nome de Usuário" autofocus="true" />
-            <label for="password">Senha</label>
-            <input type="password" placeholder="Digite sua Senha" />
-            <a href="/">Esqueci minha Senha</a>
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+            <br>
+            {{ form.as_p }}
             <input type="submit" value="Acessar" class="btn" />
+            <a onclick="location.href='../reset_password/'">Esqueci minha senha</a>
         </form>
+            
     </div>
-    
 </body>
 </html>

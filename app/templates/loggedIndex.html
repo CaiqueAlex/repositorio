@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="title">term.ooo</title>
+    <link rel="stylesheet" href="{% static 'styles/stylesloggedIndex.css' %}">
+    <link rel="icon" href="{% static 'images/termologo.png' %}">
+  </head>
+  <body>
+    <form id="logout-form" action="{% url 'logout' %}" method="POST">
+      {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+      {% csrf_token %}
+      <button type="submit" class="botaosair"> <img src="{% static 'images/sair.png' %}"></button>
+    </form>
+    <div class="guess-section">
+      <h1> Term.ooo </h1>
+      <br>
+      <h1> Clique abaixo para Jogar! </h1>
+      <hr>
+      <br>
+      <button class="botaoindex" onclick="location.href='../game/'">Jogar</button>
+      <br>
+    </div>
+  </body>
+  <script>
+    var userNotAuthenticated = "{{ user_not_authenticated }}";
+    if (userNotAuthenticated === "true") {
+        alert("Faça login ou cadastre-se para jogar!");
+    }
+</script>
+</html>
